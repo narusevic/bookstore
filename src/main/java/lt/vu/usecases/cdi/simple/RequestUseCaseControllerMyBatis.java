@@ -18,38 +18,38 @@ import java.util.List;
 @Model // tas pats kaip: @Named ir @RequestScoped
 @Slf4j
 public class RequestUseCaseControllerMyBatis {
-//
-//    @Getter
-//    private Bookstore bookstore = new Bookstore();
-//    @Getter
-//    private Writer writer = new Writer();
-//    @Getter
-//    private List<Writer> writers;
-//
-//    @PostConstruct
-//    public void init() {
-//        loadAllWriters();
-//    }
-//
-//    @Inject
-//    private WriterMapper writerMapper;
-//    @Inject
-//    private BookstoreMapper bookstoreMapper;
-//    @Inject
-//    private BookstoreWriterMapper bookstoreWriterMapper;
-//
-//    @Transactional
-//    public void createBookstoreWriter() {
-//        bookstoreMapper.insert(bookstore);
-//        writerMapper.insert(writer);
-//        BookstoreWriter bookstoreWriter = new BookstoreWriter();
-//        bookstoreWriter.setBookstoreId(bookstore.getId());
-//        bookstoreWriter.setWriterId(writer.getId());
-//        bookstoreWriterMapper.insert(bookstoreWriter);
-//        log.info("Maybe OK...");
-//    }
-//
-//    private void loadAllWriters() {
-//        writers = writerMapper.selectAll();
-//    }
+
+    @Getter
+    private Bookstore bookstore = new Bookstore();
+    @Getter
+    private Writer writer = new Writer();
+    @Getter
+    private List<Writer> writers;
+
+    @PostConstruct
+    public void init() {
+        loadAllWriters();
+    }
+
+    @Inject
+    private WriterMapper writerMapper;
+    @Inject
+    private BookstoreMapper bookstoreMapper;
+    @Inject
+    private BookstoreWriterMapper bookstoreWriterMapper;
+
+    @Transactional
+    public void createBookstoreWriter() {
+        bookstoreMapper.insert(bookstore);
+        writerMapper.insert(writer);
+        BookstoreWriter bookstoreWriter = new BookstoreWriter();
+        bookstoreWriter.setBookstoreId(bookstore.getId());
+        bookstoreWriter.setWriterId(writer.getId());
+        bookstoreWriterMapper.insert(bookstoreWriter);
+        log.info("Maybe OK...");
+    }
+
+    private void loadAllWriters() {
+        writers = writerMapper.selectAll();
+    }
 }

@@ -44,6 +44,6 @@ public class Writer implements Serializable {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "writerList")
     private List<Bookstore> bookstoreList = new ArrayList<>();
 }

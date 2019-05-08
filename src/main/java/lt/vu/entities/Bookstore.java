@@ -42,6 +42,9 @@ public class Bookstore implements Serializable {
     @Column(name = "CITY")
     private String city;
 
-    @ManyToMany(mappedBy = "bookstoreList")
+    @JoinTable(name = "BOOKSTORE_WRITER", joinColumns = {
+            @JoinColumn(name = "BOOKSTORE_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+            @JoinColumn(name = "WRITER_ID", referencedColumnName = "ID")})
+    @ManyToMany
     private List<Writer> writerList = new ArrayList<>();
 }

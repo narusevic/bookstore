@@ -64,7 +64,7 @@ public class ConversationUseCaseControllerCdi implements Serializable {
     /**
      * The first conversation step.
      */
-    public void createCourse() {
+    public void createBookstore() {
         conversation.begin();
         currentForm = CURRENT_FORM.CREATE_STUDENT;
     }
