@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+    <h:head>
+        <h:outputStylesheet name="css/styles.css" />
+        <title>Request type usecase (DAO with JPA)</title>
+    </h:head>
+
+    <h:body>
+        <h1>Request type usecase example (DAO with JPA)</h1>
+        <h:form>
+            <p:fieldset legend="Writers" toggleable="true" style="width: 50%">
+                <p:dataTable value="#{requestUseCaseControllerJPA.writers}" var="writer">
+                    <p:column headerText="Writer">
+                        <h:outputText value="#{writer.firstName} #{writer.lastName}" />
+                    </p:column>
+                    <p:column headerText="Bookstores">
+                        <ui:repeat var="bookstore" value="#{writer.bookstoreList}">
+                            <h:outputText value="#{bookstore.title} " />
+                        </ui:repeat>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+
+            <h2>Create new writer and bookstore</h2>
+            <table>
+                <tr>
+                    <td>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="firstName" value="First name"/>
+                            <p:inputText id="firstName" value="#{requestUseCaseControllerJPA.writer.firstName}"/>
+                            <p:message for="firstName"/>
+
+                            <p:outputLabel for="lastName" value="Last name"/>
+                            <p:inputText id="lastName" value="#{requestUseCaseControllerJPA.writer.lastName}"/>
+                            <p:message for="lastName"/>
+
+                        </h:panelGrid>
+                    </td>
+                    <td>
+                        <h:panelGrid columns="3">
+                            <p:outputLabel for="title" value="Bookstore title"/>
+                            <p:inputText id="title" value="#{requestUseCaseControllerJPA.bookstore.title}"/>
+                            <p:message for="title"/>
+
+                            <p:outputLabel for="city" value="Bookstore city"/>
+                            <p:inputText id="city" value="#{requestUseCaseControllerJPA.bookstore.city}"/>
+                            <p:message for="city"/>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+
+            <p:commandButton value="Create writer and bookstore"
+                             actionListener="#{requestUseCaseControllerJPA.createBookstoreWriter()}"
+                             action="simple-usecase-jpa?faces-redirect=true"
+                             ajax="false"/>
+
+            <p:messages globalOnly="true"/>
+        </h:form>
+
+    </h:body>
+</html>
+
