@@ -7,6 +7,14 @@
         bean-discovery-mode="annotated">
 
     <alternatives>
-        <class>org.apache.deltaspike.jpa.impl.transaction.ContainerManagedTransactionStrategy</class>
+        <class>lt.vu.asynchronous.CompBAlternative</class>
     </alternatives>
+    <interceptors>
+        <class>lt.vu.interceptors.InterceptorImpl</class>
+    </interceptors>
+    <decorators>
+        <class>
+            lt.vu.decorators.PrintDecorator
+        </class>
+    </decorators>
 </beans>

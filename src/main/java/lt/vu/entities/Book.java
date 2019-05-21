@@ -33,6 +33,10 @@ public class Book implements Serializable {
     @Column(name = "ID")
     private Integer id;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
+
     @Size(min = 3, max = 20)
     @Column(name = "Title")
     private String title;

@@ -10,7 +10,7 @@
 <h:head/>
 <h:body>
     <ui:composition template="/WEB-INF/templates/mainLayout.xhtml">
-        <ui:param name="pageName" value="Atsiskaitymas 1 Bookstore Lukas Naruševičius S1610686 PS3"/>
+        <ui:param name="pageName" value="Atsiskaitymas 2 Bookstore Lukas Naruševičius S1610686 PS3"/>
 
         <ui:define name="content">
             <dl>
@@ -18,7 +18,7 @@
                 <dd><p>#{firstComp.sayHello()}</p></dd>
 
                 <dt><b>Request type use-case example:</b></dt>
-                <dd>
+                <dd> 
                     <p>
                         <h:link outcome="simple-usecase-jpa">Create new course and student (DAO with JPA)</h:link><br/>
                         <h:link outcome="simple-usecase-mybatis">Create new course and student (DAO with MyBatis)</h:link>
@@ -31,6 +31,10 @@
                         <h:link outcome="conversation-cdi">Example with CDI</h:link><br/>
                     </p>
                 </dd>
+
+                <dt><b>Asynchronous calls</b></dt>
+                <dd><p>#{compA.callAsyncMethod()}</p></dd>
+                <dd><p>#{compA.callCompC()}</p></dd>
 
             </dl>
         </ui:define>

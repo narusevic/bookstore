@@ -40,6 +40,10 @@ public class Writer implements Serializable {
     @Column(name = "FIRST_NAME")
     private String firstName;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
+
     @Size(min = 4, max = 50)
     @Column(name = "LAST_NAME")
     private String lastName;

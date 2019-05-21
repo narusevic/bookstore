@@ -52,6 +52,7 @@ public class ConversationUseCaseControllerCdi implements Serializable {
     private List<Writer> writers;
 
     private CURRENT_FORM currentForm = CURRENT_FORM.CREATE_COURSE;
+    private int tries = 5;
     public boolean isCurrentForm(CURRENT_FORM form) {
         return currentForm == form;
     }
@@ -81,21 +82,30 @@ public class ConversationUseCaseControllerCdi implements Serializable {
     /**
      * The last conversation step.
      */
-    @Transactional(Transactional.TxType.REQUIRED)
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public String ok() {
         try {
+            tries--;
+            Writer firstWriter = writerDAO.getAllWriters().get(0);
+            Thread.sleep(15000);
+            firstWriter.setFirstName("Giedrius1");
+
             bookstoreDAO.create(bookstore);
             writerDAO.create(writer);
             em.flush();
             Messages.addGlobalInfo("Success!");
         } catch (OptimisticLockException ole) {
             // Other user was faster...
+            if (tries > 0)
+            {
+                ok();
+            }
             Messages.addGlobalWarn("Please try again");
             log.warn("Optimistic Lock violated: ", ole);
-        } catch (PersistenceException pe) {
+        } catch (InterruptedException ie) {
             // Some problems with DB - most often this is programmer's fault.
             Messages.addGlobalError("Finita la commedia...");
-            log.error("Error ending conversation: ", pe);
+            log.error("Error ending conversation: ", ie);
         }
         Faces.getFlash().setKeepMessages(true);
         conversation.end();

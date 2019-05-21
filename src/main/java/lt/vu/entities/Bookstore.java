@@ -38,6 +38,10 @@ public class Bookstore implements Serializable {
     @Column(name = "TITLE")
     private String title;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
+
     @Size(max = 50)
     @Column(name = "CITY")
     private String city;
